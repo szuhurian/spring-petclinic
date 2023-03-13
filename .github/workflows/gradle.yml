@@ -9,7 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - userstories/*
   pull_request:
     branches: [ "main" ]
 
@@ -28,12 +30,20 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+
     - uses: actions/upload-artifact@v3
       with:
         name: Package
         path: build/libs
 
+
+        
