@@ -64,4 +64,4 @@ jobs:
         app-name: 'thesis-pet-clinic'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_53e9c8230d7f419eb7495e3ca5b3ea43 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_30a0f5391792460ab5a8248b4dd09614 }}/pet-clinic-image:v1.0.4'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_30a0f5391792460ab5a8248b4dd09614 }}/pet-clinic-image:${{ inputs.pet-clinic_version }}'
